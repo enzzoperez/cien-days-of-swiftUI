@@ -1,14 +1,17 @@
 import UIKit
 
 
-//STRINGS
-var greeting = "Hello, playground"
+//BOOLEAN
+var myBool = false
+print(!myBool)
 
-print(greeting.uppercased())
-print(greeting.hasPrefix("Hel"))
-print(greeting.hasPrefix("Hal"))
+myBool.toggle()
+print(myBool)
 
-//INTS
-let num = 130
-let numAux = 13_00 //1300
-print(num.isMultiple(of: 3))
+//STRING INTERPOLATION
+
+//ERROR
+//let number = 11
+//let missionMessage = "Apollo " + number + " landed on the moon."
+
+let missionMessage = "Apollo \(23) landed on the moon."
