@@ -1,17 +1,6 @@
 import UIKit
 
+let tempCelsius = 32
+let resultF = ((tempCelsius * 9 ) / 5) + 32
 
-//BOOLEAN
-var myBool = false
-print(!myBool)
-
-myBool.toggle()
-print(myBool)
-
-//STRING INTERPOLATION
-
-//ERROR
-//let number = 11
-//let missionMessage = "Apollo " + number + " landed on the moon."
-
-let missionMessage = "Apollo \(23) landed on the moon."
+print(resultF)
