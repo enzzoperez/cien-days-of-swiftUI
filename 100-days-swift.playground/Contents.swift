@@ -1,6 +1,21 @@
-import UIKit
+//ARRAYs
+let presidents = ["Bush", "Obama", "Trump", "Biden"]
+let reversedPresidents = presidents.reversed()
+print(reversedPresidents) //doesnt print another array
 
-let tempCelsius = 32
-let resultF = ((tempCelsius * 9 ) / 5) + 32
+//SETs
+let arrayOfBlogCategories: [String] = ["Swift", "Debugging", "Xcode", "Workflow", "Optimization"]
+let setOfBlogCategories: Set<String> = ["Swift", "Debugging", "Xcode", "Workflow", "Optimization"]
+print(setOfBlogCategories, arrayOfBlogCategories)
 
-print(resultF)
+
+//ENUMs
+enum Weekday {
+    case "monday" // error
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+}
+
+print(Weekday.monday)
