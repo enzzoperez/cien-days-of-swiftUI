@@ -1,21 +1,7 @@
-//ARRAYs
-let presidents = ["Bush", "Obama", "Trump", "Biden"]
-let reversedPresidents = presidents.reversed()
-print(reversedPresidents) //doesnt print another array
+//This time the challenge is to create an array of strings, then write some code that prints the number of items in the array and also the number of unique items in the array.
 
-//SETs
-let arrayOfBlogCategories: [String] = ["Swift", "Debugging", "Xcode", "Workflow", "Optimization"]
-let setOfBlogCategories: Set<String> = ["Swift", "Debugging", "Xcode", "Workflow", "Optimization"]
-print(setOfBlogCategories, arrayOfBlogCategories)
-
-
-//ENUMs
-enum Weekday {
-    case "monday" // error
-    case tuesday
-    case wednesday
-    case thursday
-    case friday
-}
-
-print(Weekday.monday)
+let arrayString = [String](["enzo", "perez", "enzo"])
+let a = arrayString.count
+let s = Set(arrayString)
+print(a)
+print(s.count)
