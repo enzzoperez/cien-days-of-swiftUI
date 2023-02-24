@@ -1,47 +1,61 @@
-func printMyMsg(msg: String, number: Int) -> Void {
-    print(msg, number)
+func myDefaultParams(_ number: Int = 2) -> Int {
+    return number * 2
 }
 
-printMyMsg(msg: "Hola", number: 9)
-//printMyMsg(number: 8, msg: "Error")
+print("Mult: ", myDefaultParams())
 
-func rollDice() -> Int {
-    Int.random(in: 1...6)
+
+//handle errors swift
+enum WordError: Error {
+    case short, long, wrong
 }
 
-print(rollDice())
-
-func areEqualString(str1: String, str2: String) -> Bool {
-    return str1.sorted() == str2.sorted()
+func guessingGame(word: String) throws -> String {
+    let correctWord = "River"
+    if word.count < correctWord.count {throw WordError.short}
+    if word.count > correctWord.count {throw WordError.long}
+    if word != correctWord {throw WordError.wrong}
+    return "Well done!"
 }
 
-areEqualString(str1: "abc", str2: "cab")
-
-func helpTuple(name: String, age: Int) -> (name: String, age: Int) {
-    return (name,age)
+do{
+    let res = try guessingGame(word: "river")
+} catch WordError.long {
+    print("muy largo")
+} catch WordError.short {
+    print("Muy corto")
+} catch WordError.wrong {
+    print("Equivocado")
 }
 
-let (name, age) =  helpTuple(name: "enzou", age: 18)
 
-print("\(name) has \(age)")
-
-
-//func names parameters
-//EXTERNAL - INTERNAL!!
-func helpUpper(mystring passedString: String) -> Bool {
-    print(passedString)
-    return passedString == "hola"
+//checkpoint 4: write func from 1 to 10k return square root
+enum CalcError: Error {
+    case outOfBounds, noRoot
 }
 
-func helpUpper(_ passedString: String) -> Bool {
-    print(passedString)
-    return passedString == "hola"
+func myRoot(number: Int) throws -> Int {
+    //handle out of range error
+    if(number < 1 || number > 10_000) {
+        throw CalcError.outOfBounds
+    }
+    
+    //by iterating number until number param because square root cannot be greater than number param itself
+    for i in 1...number {
+        let result = i * i
+        //comparition with number to check if i could be the sqrt, if so, we return it
+        if(result == number){
+            return i;
+        }
+    }
+    
+    throw CalcError.noRoot
 }
 
-helpUpper("hola sin names")
-helpUpper(mystring: "hola")
-
-
-func evaluateJavaScript(_ input: String) {
-    print("Yup, that's JavaScript alright.")
+do{
+    try print(myRoot(number: 32))
+} catch CalcError.noRoot {
+    print("cannot calculate root")
+} catch CalcError.outOfBounds {
+    print("Out of range")
 }
