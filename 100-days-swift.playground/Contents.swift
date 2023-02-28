@@ -51,6 +51,8 @@ let rolls = makeArray(size: 50, using: {
 
 
 //CHECKPOINT
+
+//My solution (too JS based)
 print("Checkpoint started")
 let luckyNumbers = [7, 4, 38, 21, 16, 15, 12, 33, 31, 49]
 
@@ -62,3 +64,16 @@ luckyNumbers
     .filter(myEven)
     .sorted(by: sortArray)
     .map(convert)
+
+
+//proposed solution
+let luckyNumbersA = [7, 4, 38, 21, 16, 15, 12, 33, 31, 49]
+
+let myFilter = { (array: [Int]) in
+    array
+        .filter{ !$0.isMultiple(of: 2)}
+        .sorted()
+        .map{print("\($0) is a lucky number")}
+}
+
+myFilter(luckyNumbersA)
