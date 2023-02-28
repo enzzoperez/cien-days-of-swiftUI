@@ -1,61 +1,64 @@
-func myDefaultParams(_ number: Int = 2) -> Int {
-    return number * 2
+let myPrint = {
+    print("This is a basic closure")
 }
+myPrint()
 
-print("Mult: ", myDefaultParams())
 
-
-//handle errors swift
-enum WordError: Error {
-    case short, long, wrong
-}
-
-func guessingGame(word: String) throws -> String {
-    let correctWord = "River"
-    if word.count < correctWord.count {throw WordError.short}
-    if word.count > correctWord.count {throw WordError.long}
-    if word != correctWord {throw WordError.wrong}
-    return "Well done!"
+//closure with errors!
+enum myError: Error { case MyError }
+let myClosureParams = {(number: Int, name: String) throws -> String in
+    if(name == "enzou"){
+        throw myError.MyError
+    }
+    return "my \(name) is \(number)"
 }
 
 do{
-    let res = try guessingGame(word: "river")
-} catch WordError.long {
-    print("muy largo")
-} catch WordError.short {
-    print("Muy corto")
-} catch WordError.wrong {
-    print("Equivocado")
+    let a = try myClosureParams(4, "enzou")
+    print(a)
+} catch myError.MyError {
+    print("error in screen")
 }
 
-
-//checkpoint 4: write func from 1 to 10k return square root
-enum CalcError: Error {
-    case outOfBounds, noRoot
+//with func
+func myFuncCl(name: String, num: String) -> Int {
+     42
 }
 
-func myRoot(number: Int) throws -> Int {
-    //handle out of range error
-    if(number < 1 || number > 10_000) {
-        throw CalcError.outOfBounds
+var b = myFuncCl
+b("E", "ERT")
+
+//passing func
+func makeArray(size: Int, using generator: () -> Int) -> [Int] {
+    var numbers = [Int]()
+
+    for _ in 0..<size {
+        let newNumber = generator()
+        numbers.append(newNumber)
     }
-    
-    //by iterating number until number param because square root cannot be greater than number param itself
-    for i in 1...number {
-        let result = i * i
-        //comparition with number to check if i could be the sqrt, if so, we return it
-        if(result == number){
-            return i;
-        }
-    }
-    
-    throw CalcError.noRoot
-}
 
-do{
-    try print(myRoot(number: 32))
-} catch CalcError.noRoot {
-    print("cannot calculate root")
-} catch CalcError.outOfBounds {
-    print("Out of range")
+    return numbers
 }
+let rolls = makeArray(size: 50, using: {
+    Int.random(in: 1...3)
+})
+//let rolls = makeArray(size: 50) {
+//    Int.random(in: 1...20)
+//}
+
+
+//print(rolls)
+
+
+//CHECKPOINT
+print("Checkpoint started")
+let luckyNumbers = [7, 4, 38, 21, 16, 15, 12, 33, 31, 49]
+
+func myEven(n: Int) -> Bool { n % 2 != 0 }
+func sortArray(item1: Int, item2: Int) -> Bool {item1 < item2}
+func convert(item: Int) -> Void { print("\(item) is a lucky numbers") }
+
+luckyNumbers
+    .filter(myEven)
+    .sorted(by: sortArray)
+    .map(convert)
